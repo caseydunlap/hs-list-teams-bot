@@ -6,7 +6,7 @@ import base64
 from datetime import datetime
 import jwt
 
-#test-deploy
+#test-deployment
 
 #Function to fetch secrets from secrets manager
 def get_secrets(secret_names, region_name="us-east-1"):
