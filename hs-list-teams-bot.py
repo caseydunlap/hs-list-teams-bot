@@ -270,7 +270,7 @@ def translate_and_explain(user_message):
         
     
         - IMPORTANT NOTE TO CLAUDE: WHEN USER ASKS TO FILTER ON TITLE, ROLE, JOB ROLE - BOTH OF THESE FIELDS MUST ALWAYS BE INCLUDED IN THE JSON, COVERING ALL COMBINATIONS (if request
-        has two state requests and requires a split into filter groups, all of these fields need to be covered always, its or logic with these two fields. DO NOT INCLUDE THESE FIELDS IF USER DOES NOT MENTION IN REQUEST.
+        has two state requests and requires a split into filter groups, all of these fields need to be covered always, its or logic with these two fields. DO NOT INCLUDE THESE FIELDS IF USER DOES NOT MENTION IN REQUEST, THERE IS ALSO NO NEED TO CLARIFY IN RESPONSE TO USER.
 
             - job role, role, title -- admins, administrator -> job_function value: ["Administrator"] (this is a picklist)
             - job role, role, title -- admin  -> jobtitle value: ["Admin"] (this is a contains, see json above for structure)
