@@ -6,8 +6,6 @@ import base64
 from datetime import datetime
 import jwt
 
-#test-deployment
-
 #Function to fetch secrets from secrets manager
 def get_secrets(secret_names, region_name="us-east-1"):
     secrets = {}
@@ -481,7 +479,7 @@ def process_message(body, bot_client_id, bot_client_secret):
     
     print(f"User said: '{user_message}'")
     
-    # Handle greeting messages - don't process as list requests
+    #Handle greeting messages - don't process as list requests
     if user_message.lower() in ['hi', 'hello', 'hey', 'start', 'help']:
         print("Handling greeting - sending help message")
         help_message ="""👋 **Welcome to the HubSpot List Creator!**\n\nI can help you create HubSpot contact lists using natural language. Here's how to use me:\n\n**📋 Examples:**\n\n- "Create a list of SMB providers in Virginia"\n- "Make a list of enterprise provider contacts in California and Texas"\n- "Find mid-market provider contacts in North Carolina"\n\n**🎯 What I understand:**\n\n- **Locations**: State names and abbreviations\n- **Company segments**: SMB, Mid-Market, Enterprise\n- **Types**: Provider contacts\n\n**Ready to get started? Try asking me to create a list!** 🚀"""
