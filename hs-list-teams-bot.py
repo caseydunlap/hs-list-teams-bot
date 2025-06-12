@@ -269,11 +269,19 @@ def translate_and_explain(user_message):
         - enterprise, ent, enterprise segment contacts → "census_range" values: ["1000+","500+","500-1000","350-500","501-1000","1001+"]
         
         - IMPORTANT NOTE TO CLAUDE: WHEN USER ASKS TO FILTER ON TITLE, ROLE, JOB ROLE - BOTH OF THESE FIELDS MUST ALWAYS BE INCLUDED IN THE JSON, COVERING ALL COMBINATIONS (if request
-        has two state requests and requires a split into filter groups, both of these fields need to be covered always, its or logic with these two fields
+        has two state requests and requires a split into filter groups, all of these fields need to be covered always, its or logic with these two fields
+
             - job role, role, title -- admins, administrator -> job_function value: ["Administrator"] (this is a picklist)
             - job role, role, title -- admin  -> jobtitle value: ["Admin"] (this is a contains, see json above for structure)
-            - job role, role, title -- owner, ceo, president -> job_function value: ["Owner/President/CEO"] (this is a picklist)
+
+            - job role, role, title -- owner, ceo, president -> job_function value: ["Owner/President/CEO","Owner"] (this is a picklist)
             - job role, role, title -- owner  -> jobtitle value: ["Owner"] (this is a contains, see json above for structure)
+
+            - job role, role, title -- billing, finance, biller, accounting -> job_function value: ["Billing/Finance","Billing-Finance"] (this is a picklist)
+            - job role, role, title -- billing  -> jobtitle value: ["Finance"] (this is a contains, see json above for structure)
+            
+            - job role, role, title -- hr, human resources -> job_function value: ["HR"] (this is a picklist)
+            - job role, role, title -- hr  -> jobtitle value: ["HR"] (this is a contains, see json above for structure)
             
         - exclude/include caregiver contacts -> appropriate listId value :["974"] -> operator for include ["IN_LIST"] operator for exclude ["NOT_IN_LIST"] - USE THE SPECIFIC LISTID JSON FILTER STRUCTURE
         - exclude/include contacts on marketing exclusion list -> appropriate listId value :["3259"] -> operator for include ["IN_LIST"] operator for exclude ["NOT_IN_LIST"] - USE THE SPECIFIC LISTID JSON FILTER STRUCTURE
