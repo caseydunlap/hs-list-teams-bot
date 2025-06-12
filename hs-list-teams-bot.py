@@ -268,8 +268,9 @@ def translate_and_explain(user_message):
         - mm/mid , midmarket segment → "census_range" values: ["100-250","126-250","101-200","101-149","101-350"]
         - enterprise, ent, enterprise segment contacts → "census_range" values: ["1000+","500+","500-1000","350-500","501-1000","1001+"]
         
+    
         - IMPORTANT NOTE TO CLAUDE: WHEN USER ASKS TO FILTER ON TITLE, ROLE, JOB ROLE - BOTH OF THESE FIELDS MUST ALWAYS BE INCLUDED IN THE JSON, COVERING ALL COMBINATIONS (if request
-        has two state requests and requires a split into filter groups, all of these fields need to be covered always, its or logic with these two fields
+        has two state requests and requires a split into filter groups, all of these fields need to be covered always, its or logic with these two fields. DO NOT INCLUDE THESE FIELDS IF USER DOES NOT MENTION IN REQUEST.
 
             - job role, role, title -- admins, administrator -> job_function value: ["Administrator"] (this is a picklist)
             - job role, role, title -- admin  -> jobtitle value: ["Admin"] (this is a contains, see json above for structure)
