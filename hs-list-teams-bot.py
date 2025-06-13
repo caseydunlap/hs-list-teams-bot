@@ -312,11 +312,18 @@ def translate_and_explain(user_message):
         #Convert request to JSON string for API call
         serialized_body = json.dumps(request_body)
         print(f"Body serialized (length: {len(serialized_body)})")
-        
+
+        #Fetch AWS account id
+        sts_client = boto3.client(
+            service_name='sts',
+            region_name='us-east-1'
+        )
+        aws_account_id = sts_client.get_caller_identity()['Account']
+    
         #Call Claude via Bedrock
         print("Making actual Bedrock call...")
         response = bedrock.invoke_model(
-            modelId="arn:aws:bedrock:us-east-1:995177893317:inference-profile/us.anthropic.claude-3-5-sonnet-20240620-v1:0",
+            modelId=f"arn:aws:bedrock:us-east-1:{aws_account_id}:inference-profile/us.anthropic.claude-3-5-sonnet-20240620-v1:0",
             contentType="application/json",
             accept="application/json",
             body=serialized_body
