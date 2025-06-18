@@ -284,9 +284,10 @@ def translate_and_explain(user_message):
             - job role, role, title -- hr, human resources -> job_function value: ["HR"] (this is a picklist)
             - job role, role, title -- hr  -> jobtitle value: ["HR"] (this is a contains, see json above for structure)
             
-        - exclude/include caregiver contacts -> appropriate listId value :["974"] -> operator for include ["IN_LIST"] operator for exclude ["NOT_IN_LIST"] - USE THE SPECIFIC LISTID JSON FILTER STRUCTURE
-        - exclude/include contacts on marketing exclusion list -> appropriate listId value :["3259"] -> operator for include ["IN_LIST"] operator for exclude ["NOT_IN_LIST"] - USE THE SPECIFIC LISTID JSON FILTER STRUCTURE
-        - exclude/include contacts on customer experience, cx exclusion list -> appropriate listId value :["19163"] -> operator for include ["IN_LIST"] operator for exclude ["NOT_IN_LIST"] - USE THE SPECIFIC LISTID JSON FILTER STRUCTURE
+        - IMPORTANT NOTE TO CLAUDE: FOR LIST EXCLUSIONS, DO NOT EXCLUDE OR INCLUDE BY DEFAULT. THE USER NEEDS TO MENTION THE EXCLUSION OR INCLUSION LOGIC IN THE REQUEST.
+            - exclude/include caregiver contacts -> appropriate listId value :["974"] -> operator for include ["IN_LIST"] operator for exclude ["NOT_IN_LIST"] - USE THE SPECIFIC LISTID JSON FILTER STRUCTURE
+            - exclude/include contacts on marketing exclusion list -> appropriate listId value :["3259"] -> operator for include ["IN_LIST"] operator for exclude ["NOT_IN_LIST"] - USE THE SPECIFIC LISTID JSON FILTER STRUCTURE
+            - exclude/include contacts on customer experience, cx exclusion list -> appropriate listId value :["19163"] -> operator for include ["IN_LIST"] operator for exclude ["NOT_IN_LIST"] - USE THE SPECIFIC LISTID JSON FILTER STRUCTURE
         
         - exclude/include paid contacts or providers -> hhax_platform_tags values: ["Enterprise","Enterprise-Core,"Enterprise-EVV Starter"] -> operator for include ["IS_EQUAL_TO"] operator for exclude ["IS_NOT_EQUAL_TO"]
         - exclude/include free, portal, hhax portal, sponsored contacts or providers -> hhax_platform_tags values: ["Enterprise-NY Portal","Portal-Homecare","Portal-Homecare(SCE)","Enterprise-Free"] -> operator for include ["IS_EQUAL_TO"] operator for exclude ["IS_NOT_EQUAL_TO"]
