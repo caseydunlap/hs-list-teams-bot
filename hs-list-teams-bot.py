@@ -289,8 +289,9 @@ def translate_and_explain(user_message):
             - exclude/include contacts on marketing exclusion list -> appropriate listId value :["3259"] -> operator for include ["IN_LIST"] operator for exclude ["NOT_IN_LIST"] - USE THE SPECIFIC LISTID JSON FILTER STRUCTURE
             - exclude/include contacts on customer experience, cx exclusion list -> appropriate listId value :["19163"] -> operator for include ["IN_LIST"] operator for exclude ["NOT_IN_LIST"] - USE THE SPECIFIC LISTID JSON FILTER STRUCTURE
         
-        - exclude/include paid contacts or providers -> hhax_platform_tags values: ["Enterprise","Enterprise-Core,"Enterprise-EVV Starter"] -> operator for include ["IS_EQUAL_TO"] operator for exclude ["IS_NOT_EQUAL_TO"]
-        - exclude/include free, portal, hhax portal, sponsored contacts or providers -> hhax_platform_tags values: ["Enterprise-NY Portal","Portal-Homecare","Portal-Homecare(SCE)","Enterprise-Free"] -> operator for include ["IS_EQUAL_TO"] operator for exclude ["IS_NOT_EQUAL_TO"]
+        - IMPORTANT NOTE TO CLAUDE: WHEN THE USER ASKS TO INCLUDE OR EXCLUDE "CUSTOMERS" THIS DOES NOT MEAN ALL CONTACTS. THIS NEEDS TO BE HANDLED APPROPRIATELY, THE SAME AS IF SOMEONE MENTIONS PAID CONTACTS OR PROVIDERS.
+            - exclude/include paid contacts or providers -> hhax_platform_tags values: ["Enterprise","Enterprise-Core,"Enterprise-EVV Starter"] -> operator for include ["IS_EQUAL_TO"] operator for exclude ["IS_NOT_EQUAL_TO"]
+            - exclude/include free, portal, hhax portal, sponsored contacts or providers -> hhax_platform_tags values: ["Enterprise-NY Portal","Portal-Homecare","Portal-Homecare(SCE)","Enterprise-Free"] -> operator for include ["IS_EQUAL_TO"] operator for exclude ["IS_NOT_EQUAL_TO"]
         
         Replace placeholders with actual values based on: "{user_message}"
         Include the timestamp {timestamp} at the end of the name to ensure uniqueness.
