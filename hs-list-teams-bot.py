@@ -267,6 +267,7 @@ def translate_and_explain(user_message):
         - smb/small medium business, smb segment → "census_range" values: ["0-50","1-25","50-100","26-50","51-125","Small (0-99)","0","1-50","51-100"]
         - mm/mid , midmarket segment → "census_range" values: ["100-250","126-250","101-200","101-149","101-350"]
         - enterprise, ent, enterprise segment contacts → "census_range" values: ["1000+","500+","500-1000","350-500","501-1000","1001+"]
+            -IMPORTANT NOTE on Census Range Segmentation: When user requests census 'X and above', include ALL census ranges from ALL segments (SMB, mid-market, enterprise) that contain that number or higher, opposite for X and below.
         
     
         - IMPORTANT NOTE TO CLAUDE: WHEN USER ASKS TO FILTER ON TITLE, ROLE, JOB ROLE - BOTH OF THESE FIELDS MUST ALWAYS BE INCLUDED IN THE JSON, COVERING ALL COMBINATIONS (if request
