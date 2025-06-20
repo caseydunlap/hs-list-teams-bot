@@ -261,7 +261,7 @@ def translate_and_explain(user_message):
           }}
         }}
 
-        IMPORTANT NOTE TO CLAUDE: For simple requests without title/job function, use a single OR branch with IS_ANY_OF for all states. Only use multiple like included above when role/title is included in the request.
+        IMPORTANT NOTE TO CLAUDE: For requests without title/job function, use a single OR primary branch with AND filters nested as needed.
 
         Field mappings for "{user_message}":
         - location/state → "primary_location" (use 2-letter state code) -- when more than one state included in the request, both states must be included in a single filter group (i.e. any of NY,VA)
