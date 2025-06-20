@@ -261,7 +261,14 @@ def translate_and_explain(user_message):
           }}
         }}
 
-        IMPORTANT NOTE TO CLAUDE: For requests without title/job function, use a single OR primary branch with AND filters nested as needed.
+    
+        ***CRITICAL HubSpot API REQUIREMENT:***
+        - Root filterBranch MUST always be "filterBranchType": "OR"
+        - Root filterBranch MUST have empty "filters": []
+        - Root filterBranch MUST have at least one nested branch in "filterBranches"
+        - Each nested branch MUST be "filterBranchType": "AND"
+        - Put all actual filters inside the nested AND branches
+        ***This is a HubSpot API requirement, not optional.***
 
         Field mappings for "{user_message}":
         - location/state → "primary_location" (use 2-letter state code) -- when more than one state included in the request, both states must be included in a single filter group (i.e. any of NY,VA)
