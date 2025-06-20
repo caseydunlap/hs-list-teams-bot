@@ -297,6 +297,9 @@ def translate_and_explain(user_message):
         Include the timestamp {timestamp} at the end of the name to ensure uniqueness.
         
         NOTE: NOT ALL FIELD MAPPINGS SHOULD BE INCLUDED IN EVERY REQUEST, ASSESS WHAT IS NEEDED BASED ON THE NATURAL LANGUAGE PROCESSED FROM THE USER MESSAGES
+
+        CRITICAL: Output must be valid JSON. Test the structure before responding.
+
         """
         #Log prompt creation success and length
         print(f"SUCCESS: Prompt created (length: {len(prompt)})")
@@ -306,7 +309,7 @@ def translate_and_explain(user_message):
         #Prepare request payload for Claude
         request_body = {
             "anthropic_version": "bedrock-2023-05-31",
-            "max_tokens": 10000,
+            "max_tokens": 25000,
             "messages": [{"role": "user", "content": prompt}]
         }
         print(f"Request body created")
