@@ -129,7 +129,9 @@ def translate_and_explain(user_message):
         prompt = f"""User wants to create a HubSpot contact list. They said: "{user_message}"
         
         Create the HubSpot API parameters and explain what list you'll create.
-        
+
+        CRITICAL: If user makes a request with fields/filters that are not in scope, reply to user with "Sorry, you have included fields outside of my abilities."
+
         Respond with this EXACT format:
         
         EXPLANATION: [Plain English explanation of what list will be created]
@@ -379,6 +381,20 @@ def translate_and_explain(user_message):
         #Extract the actual text response from Claude
         claude_output = response_body['content'][0]['text']
         print(f"SUCCESS: Content extracted (length: {len(claude_output)})")
+
+        rejection_patterns = [
+        "Sorry, you have included fields outside of my abilities.",
+        "outside of my abilities",
+        "not in scope",
+        "cannot help with",
+        "don't have access to"]
+
+        if any(pattern in claude_output for pattern in rejection_patterns):
+            print("Claude detected out-of-scope fields in user request")
+            help_message = """👋 **Welcome to the HubSpot List Creator!**\n\nI can help you create HubSpot contact lists using natural language. Here's how to use me:\n\n**📋 Examples:**\n\n- "Create a list of SMB providers in Virginia"\n- "Make a list of enterprise provider contacts in California and Texas"\n- "Find mid-market provider contacts in North Carolina"\n\n**🎯 What I understand:**\n\n- **Locations**: State names and abbreviations\n- **Company segments**: SMB, Mid-Market, Enterprise\n- **Contact Types**: Provider contacts\n- **Role/Title Filtering**: Administrator, Owner, Billing/Finance\n- **List Exclusions**: Caregiver, Marketing Exclusion, Customer Experience Exclusions\n- **HHAX Platform Types**: Paid,Free/Sponsored\n\n\n**Ready to get started? Try asking me to create a list!** 🚀"""
+            
+            error_response = f"Sorry, I can't do that.\n\n{help_message}"
+            return error_response, None
         
         #Use regex to parse explanation and JSON from Claude's response
         print("Extracting explanation and JSON...")
