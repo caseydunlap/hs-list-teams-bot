@@ -281,8 +281,9 @@ def translate_and_explain(user_message):
             -IMPORTANT NOTE on Census Range Segmentation: When user requests census 'X and above', include ALL census ranges from ALL segments (SMB, mid-market, enterprise) that contain that number or higher, opposite for X and below.
         
     
-        - IMPORTANT NOTE TO CLAUDE: WHEN USER ASKS TO FILTER ON TITLE, ROLE, JOB ROLE - BOTH OF THESE FIELDS MUST ALWAYS BE INCLUDED IN THE JSON, COVERING ALL COMBINATIONS (if request
-        has two state requests and requires a split into filter groups, all of these fields need to be covered always, its or logic with these two fields. DO NOT INCLUDE THESE FIELDS IF USER DOES NOT MENTION IN REQUEST, THERE IS ALSO NO NEED TO CLARIFY IN RESPONSE TO USER.
+        - CRITICALLY IMPORTANT NOTE TO CLAUDE: WHEN USER ASKS TO FILTER ON TITLE, ROLE, JOB ROLE - BOTH OF THESE FIELDS MUST ALWAYS BE INCLUDED IN THE JSON, COVERING ALL COMBINATIONS (if request
+        has two state requests and requires a split into filter groups, all of these fields need to be covered always, its or logic with these two fields. 
+        DO NOT INCLUDE THESE FIELDS IF USER DOES NOT MENTION IN REQUEST, THERE IS ALSO NO NEED TO CLARIFY IN RESPONSE TO USER. THIS CANNOT BE IGNORED. THE jobtitle AND job_function must never be in the same filter branch, must always be in their own, with rest of filter logic remaining the same. 
 
             - job role, role, title -- admins, administrator -> job_function value: ["Administrator"] (this is a picklist)
             - job role, role, title -- admin  -> jobtitle value: ["Admin"] (this is a contains, see json above for structure)
